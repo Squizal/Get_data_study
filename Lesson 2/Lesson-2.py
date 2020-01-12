@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 from pprint import pprint
 import pandas as pd
+import json
 
 link_parent = 'https://www.superjob.ru'
 link_action = '/vacancy/search/'
@@ -85,4 +86,7 @@ while work is True:
     else:
         work = False
 
-pprint(pd.DataFrame(vacancies))
+#pprint(pd.DataFrame(vacancies))
+# Экспорт данных в файл
+with open('vacancies_data.json', 'w') as f:
+    json.dump(vacancies, f, sort_keys=True, indent=2, ensure_ascii=False)
